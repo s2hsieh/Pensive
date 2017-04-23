@@ -1,0 +1,5 @@
+{
+	"AppData": {
+		"ConnectionString": "Server=(localdb)\\MSSQLLocalDb;Database=PensiveDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
+	}
+	}
