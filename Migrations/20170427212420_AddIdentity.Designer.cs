@@ -8,9 +8,10 @@ using Pensive.Models;
 namespace Pensive.Migrations
 {
     [DbContext(typeof(PensiveContext))]
-    partial class PensiveContextModelSnapshot : ModelSnapshot
+    [Migration("20170427212420_AddIdentity")]
+    partial class AddIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

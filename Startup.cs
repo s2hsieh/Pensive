@@ -9,12 +9,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Pensive.Models;
+using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Pensive
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+		private IConfigurationRoot _config;
+
+		public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -22,24 +26,32 @@ namespace Pensive
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
 				.AddJsonFile("config.json")
                 .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            _config = builder.Build();
         }
-
-        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 			// Add framework services.
-			services.AddSingleton(Configuration);
+			services.AddSingleton(_config);
+			services.AddIdentity<IdentityUser, IdentityRole>(config => {
+				config.User.RequireUniqueEmail = true;
+				config.Password.RequireDigit = true;
+				config.Password.RequireUppercase = true;
+				config.Password.RequireLowercase = true;
+				config.Password.RequiredLength = 8;
+				config.Cookies.ApplicationCookie.LoginPath = "Auth/Login";
+			}).AddEntityFrameworkStores<PensiveContext>();
 			services.AddDbContext<PensiveContext>();
-            services.AddMvc();
+			services.AddScoped<IPensiveRepo, PensiveRepo>();
+            services.AddMvc()
+				.AddJsonOptions(config => config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(_config.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
@@ -55,6 +67,8 @@ namespace Pensive
             }
 
             app.UseStaticFiles();
+
+			app.UseIdentity();
 
             app.UseMvc(routes =>
             {
