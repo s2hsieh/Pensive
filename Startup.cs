@@ -40,7 +40,7 @@ namespace Pensive
 				config.Password.RequireUppercase = true;
 				config.Password.RequireLowercase = true;
 				config.Password.RequiredLength = 8;
-				config.Cookies.ApplicationCookie.LoginPath = "Auth/Login";
+				config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
 			}).AddEntityFrameworkStores<PensiveContext>();
 			services.AddDbContext<PensiveContext>();
 			services.AddScoped<IPensiveRepo, PensiveRepo>();

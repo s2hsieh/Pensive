@@ -1,0 +1,37 @@
+﻿@model Pensive.Models.Accont
+@{
+	ViewData["Title"] = "Register";
+}
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h3 class="text-center">Create an Account</h3>
+
+		<form method="post" novalidate>
+			<div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+			<div class="form-group">
+				<label asp-for="UserName"></label>
+				<input class="form-control" asp-for="UserName" />
+				<span asp-validation-for="UserName"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Email"></label>
+				<input class="form-control" asp-for="Email" />
+				<span asp-validation-for="Email"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Password"></label>
+				<input class="form-control" type="password" asp-for="Password" />
+				<span asp-validation-for="Password"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ConfirmPassword"></label>
+				<input class="form-control" type="password" asp-for="ConfirmPassword" />
+				<span asp-validation-for="ConfirmPassword"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-success" />
+				<a class="pull-right" asp-controller="Home" asp-action="Index">Cancel</a>
+			</div>
+		</form>
+	</div>
+</div>
