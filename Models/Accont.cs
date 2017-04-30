@@ -11,9 +11,11 @@ namespace Pensive.Models
 	{
 		[Required]
 		[EmailAddress]
+		[Display(Name ="Email Address")]
 		public string Email { get; set; }
 		[Required]
-		[MinLength(8)]
+		[MinLength(8), MaxLength(50)]
+		[Display(Name ="Confirm Password")]
 		public string ConfirmPassword { get; set; }
 	}
 }

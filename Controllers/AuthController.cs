@@ -25,7 +25,7 @@ namespace Pensive.Controllers
 		{
 			if (User.Identity.IsAuthenticated)
 			{
-				return Redirect("/Home/Index");
+				return RedirectToAction("Index", "Home");
 			}
 			return View();
 		}
@@ -40,7 +40,7 @@ namespace Pensive.Controllers
 				{
 					if (string.IsNullOrWhiteSpace(returnUrl))
 					{
-						return Redirect("/Home/Index");
+						return RedirectToAction("Index", "Home");
 					}
 					else
 					{
@@ -61,7 +61,7 @@ namespace Pensive.Controllers
 			{
 				await _sm.SignOutAsync();
 			}
-			return Redirect("/Home/Index");
+			return RedirectToAction("Index", "Home");
 		}
 
 		public IActionResult Register()
@@ -85,7 +85,18 @@ namespace Pensive.Controllers
 								UserName = account.UserName,
 								Email = account.Email
 							};
-							await _um.CreateAsync(user, account.Password);
+							var result = await _um.CreateAsync(user, account.Password);
+							if (result.Succeeded)
+							{
+								return RedirectToAction("Login", "Auth");
+							}
+							else
+							{
+								foreach (var error in result.Errors)
+								{
+									ModelState.AddModelError("", error.Description);
+								}
+							}
 						}
 						else
 						{
@@ -104,7 +115,6 @@ namespace Pensive.Controllers
 			}
 			else
 			{
-				ModelState.AddModelError("","Cannot use thease credentials"):
 			}
 			return View();
 		}

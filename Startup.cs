@@ -36,9 +36,7 @@ namespace Pensive
 			services.AddSingleton(_config);
 			services.AddIdentity<IdentityUser, IdentityRole>(config => {
 				config.User.RequireUniqueEmail = true;
-				config.Password.RequireDigit = true;
-				config.Password.RequireUppercase = true;
-				config.Password.RequireLowercase = true;
+				config.User.AllowedUserNameCharacters = string.Empty;
 				config.Password.RequiredLength = 8;
 				config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
 			}).AddEntityFrameworkStores<PensiveContext>();
