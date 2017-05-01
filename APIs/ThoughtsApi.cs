@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pensive.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace Pensive.APIs
 {
-    public class ThoughtsApi : Controller
+	[Authorize]
+	[Route("api/thoughts")]
+	public class ThoughtsApi : Controller
     {
 		private PensiveRepo _repo;
 
@@ -17,9 +20,9 @@ namespace Pensive.APIs
 			_repo = repo;
 		}
 
-		[HttpGet("api/thoughts/:user")]
-		public IActionResult Get(string user) {
-			return Ok(_repo.GetAllThoughtsByUser(user));
+		[HttpGet("")]
+		public IActionResult Get() {
+			return Ok(_repo.GetAllThoughtsByUser(this.User.Identity.Name));
 		}
         
     }

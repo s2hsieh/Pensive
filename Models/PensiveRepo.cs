@@ -15,12 +15,33 @@ namespace Pensive.Models
 			_db = db;
 		}
 
-		public IEnumerable<Thought> GetAllThoughtsByUser(string user) {
-			return _db.Thoughts.Where(t => t.UserName == user);
+		public async Task CreateThought(Thought thought)
+		{
+			_db.Thoughts.Add(thought);
+			await _db.SaveChangesAsync();
 		}
 
-		public Thought GetThoughtById(int id) {
-			return _db.Thoughts.Find(id);
+		public void CreateThought(Thought child, Thought parent)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void EditThought(Thought thought)
+		{
+
+		}
+
+		public void EditThought(Thought child, Thought parent)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<Thought> GetAllThoughtsByUser(string userName) {
+			return _db.Thoughts.Where(t => t.UserName == userName).ToList();
+		}
+
+		public Thought GetThoughtById(string userName, int id) {
+			return _db.Thoughts.Where(t => t.UserName == userName && t.Id == id).FirstOrDefault()
 		}
     }
 }

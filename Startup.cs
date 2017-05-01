@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Pensive.Models;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Pensive
 {
@@ -36,9 +37,23 @@ namespace Pensive
 			services.AddSingleton(_config);
 			services.AddIdentity<IdentityUser, IdentityRole>(config => {
 				config.User.RequireUniqueEmail = true;
-				config.User.AllowedUserNameCharacters = string.Empty;
 				config.Password.RequiredLength = 8;
 				config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+				config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
+				{
+					OnRedirectToLogin= async ctx =>
+					{
+						if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode==200)
+						{
+							ctx.Response.StatusCode = 401;
+						}
+						else
+						{
+							ctx.Response.Redirect(ctx.RedirectUri):
+						}
+						await Task.Yield();
+					}
+				};
 			}).AddEntityFrameworkStores<PensiveContext>();
 			services.AddDbContext<PensiveContext>();
 			services.AddScoped<IPensiveRepo, PensiveRepo>();
