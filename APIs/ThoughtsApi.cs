@@ -35,7 +35,7 @@ namespace Pensive.APIs
 		}
 
 		[HttpGet("{id}")]
-		public IActionResult GetOne(int id)
+		public IActionResult GetThought(int id)
 		{
 			try
 			{
@@ -49,21 +49,28 @@ namespace Pensive.APIs
 		}
 
 		[HttpPost("")]
-		public IActionResult CreateOne([FromBody] Thought thought)
+		public async Task<IActionResult> CreateThought([FromBody] Thought thought)
 		{
 			try
 			{
-				thought.DateAdded = DateTime.UtcNow;
-				thought.DateModified = thought.DateAdded;
-				thought.UserName = this.User.Identity.Name;
-				_repo.CreateThought(thought);
-				if (_repo.SaveAllAsync())
+				if (ModelState.IsValid)
 				{
-					return Created($"/api/thoughts/{thought.Id}", thought);
+					thought.DateAdded = DateTime.UtcNow;
+					thought.DateModified = thought.DateAdded;
+					thought.UserName = this.User.Identity.Name;
+					_repo.CreateThought(thought);
+					if (await _repo.SaveAllAsync())
+					{
+						return Created($"/api/thoughts/{thought.Id}", thought);
+					}
+					else
+					{
+						return BadRequest("Faield to create thought in database.");
+					}
 				}
 				else
 				{
-					return BadRequest("Faield to create thought in database.");
+					return BadRequest("Invalid ModelState");
 				}
 			}
 			catch (Exception ex)
@@ -73,9 +80,36 @@ namespace Pensive.APIs
 		}
 
 		[HttpPut("{id}")]
-		public IActionResult EditOne(int id, [FromBody] Thought parent, [FromBody] Thought child)
+		public async Task<IActionResult> EditThought(int id, [FromBody] Thought thought)
 		{
-
+			if (ModelState.IsValid)
+			{
+				if (thought.UserName == this.User.Identity.Name && id == thought.Id)
+				{
+					try
+					{
+						var oldThought = _repo.GetThoughtById(thought.UserName, id);
+						if (oldThought.DateAdded == thought.DateAdded)
+						{
+							thought.DateModified = DateTime.UtcNow;
+							_repo.EditThought(thought);
+							if (await _repo.SaveAllAsync())
+							{
+								return Challenge();
+							}
+						}
+					}
+					catch (Exception ex)
+					{
+						return BadRequest(ex.Message);
+					}
+				}
+				else
+				{
+					return BadRequest("Unauthorized access.");
+				}
+			}
+			return BadRequest("Invalid ModelState");
 		}
 	}
 }

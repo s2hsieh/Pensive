@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Pensive.Models
 {
@@ -7,9 +8,7 @@ namespace Pensive.Models
 		IEnumerable<Thought> GetAllThoughtsByUser(string userName);
 		Thought GetThoughtById(string userName, int id);
 		void CreateThought(Thought thought);
-		void CreateThought(Thought child, Thought parent);
 		void EditThought(Thought thought);
-		void EditThought(Thought child, Thought parent);
-		bool SaveAllAsync();
+		Task<bool> SaveAllAsync();
 	}
 }

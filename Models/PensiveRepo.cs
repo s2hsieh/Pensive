@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pensive.Models
 {
-    public class PensiveRepo : IPensiveRepo
+	public class PensiveRepo : IPensiveRepo
 	{
 		private PensiveContext _db;
 
@@ -20,26 +20,19 @@ namespace Pensive.Models
 			_db.Thoughts.Add(thought);
 		}
 
-		public void CreateThought(Thought child, Thought parent)
-		{
-
-		}
-
 		public void EditThought(Thought thought)
 		{
-
+			_db.Thoughts.Update(thought);
 		}
 
-		public void EditThought(Thought child, Thought parent)
+
+		public IEnumerable<Thought> GetAllThoughtsByUser(string userName)
 		{
-
-		}
-
-		public IEnumerable<Thought> GetAllThoughtsByUser(string userName) {
 			return _db.Thoughts.Where(t => t.UserName == userName).ToList();
 		}
 
-		public Thought GetThoughtById(string userName, int id) {
+		public Thought GetThoughtById(string userName, int id)
+		{
 			return GetAllThoughtsByUser(userName).FirstOrDefault(t => t.Id == id);
 		}
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,10 @@ namespace Pensive.Models
 		public string UserName { get; set; }
 		public DateTime DateAdded { get; set; }
 		public DateTime DateModified { get; set; }
+		[Required]
+		[MinLength(3),MaxLength(200)]
 		public string Content { get; set; }
+		[Required]
 		public string Color { get; set; }
 		public ICollection<Thought> Links { get; set; }
 	}
