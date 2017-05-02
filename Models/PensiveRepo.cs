@@ -15,15 +15,14 @@ namespace Pensive.Models
 			_db = db;
 		}
 
-		public async Task CreateThought(Thought thought)
+		public void CreateThought(Thought thought)
 		{
 			_db.Thoughts.Add(thought);
-			await _db.SaveChangesAsync();
 		}
 
 		public void CreateThought(Thought child, Thought parent)
 		{
-			throw new NotImplementedException();
+
 		}
 
 		public void EditThought(Thought thought)
@@ -33,7 +32,7 @@ namespace Pensive.Models
 
 		public void EditThought(Thought child, Thought parent)
 		{
-			throw new NotImplementedException();
+
 		}
 
 		public IEnumerable<Thought> GetAllThoughtsByUser(string userName) {
@@ -41,7 +40,12 @@ namespace Pensive.Models
 		}
 
 		public Thought GetThoughtById(string userName, int id) {
-			return _db.Thoughts.Where(t => t.UserName == userName && t.Id == id).FirstOrDefault()
+			return GetAllThoughtsByUser(userName).FirstOrDefault(t => t.Id == id);
 		}
-    }
+
+		public async Task<bool> SaveAllAsync()
+		{
+			return (await _db.SaveChangesAsync() > 0);
+		}
+	}
 }

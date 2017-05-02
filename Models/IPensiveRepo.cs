@@ -10,5 +10,6 @@ namespace Pensive.Models
 		void CreateThought(Thought child, Thought parent);
 		void EditThought(Thought thought);
 		void EditThought(Thought child, Thought parent);
+		bool SaveAllAsync();
 	}
 }
