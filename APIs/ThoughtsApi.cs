@@ -49,19 +49,19 @@ namespace Pensive.APIs
 		}
 
 		[HttpPost("")]
-		public async Task<IActionResult> CreateThought([FromBody] Thought thought)
+		public async Task<IActionResult> CreateThought([FromBody] Thought newThought)
 		{
 			try
 			{
 				if (ModelState.IsValid)
 				{
-					thought.DateAdded = DateTime.UtcNow;
-					thought.DateModified = thought.DateAdded;
-					thought.UserName = this.User.Identity.Name;
-					_repo.CreateThought(thought);
+					newThought.DateAdded = DateTime.UtcNow;
+					newThought.DateModified = newThought.DateAdded;
+					newThought.UserName = this.User.Identity.Name;
+					_repo.CreateThought(newThought);
 					if (await _repo.SaveAllAsync())
 					{
-						return Created($"/api/thoughts/{thought.Id}", thought);
+						return Created($"/api/thoughts/{newThought.Id}", newThought);
 					}
 					else
 					{
@@ -80,19 +80,19 @@ namespace Pensive.APIs
 		}
 
 		[HttpPut("{id}")]
-		public async Task<IActionResult> EditThought(int id, [FromBody] Thought thought)
+		public async Task<IActionResult> EditThought(int id, [FromBody] Thought newThought)
 		{
 			if (ModelState.IsValid)
 			{
-				if (thought.UserName == this.User.Identity.Name && id == thought.Id)
+				if (newThought.UserName == this.User.Identity.Name && id == newThought.Id)
 				{
 					try
 					{
-						var oldThought = _repo.GetThoughtById(thought.UserName, id);
-						if (oldThought.DateAdded == thought.DateAdded)
+						var oldThought = _repo.GetThoughtById(newThought.UserName, id);
+						if (oldThought.DateAdded == newThought.DateAdded)
 						{
-							thought.DateModified = DateTime.UtcNow;
-							_repo.EditThought(thought);
+							newThought.DateModified = DateTime.UtcNow;
+							_repo.EditThought(newThought);
 							if (await _repo.SaveAllAsync())
 							{
 								return Challenge();
@@ -106,7 +106,7 @@ namespace Pensive.APIs
 				}
 				else
 				{
-					return BadRequest("Unauthorized access.");
+					return Unauthorized();
 				}
 			}
 			return BadRequest("Invalid ModelState");
