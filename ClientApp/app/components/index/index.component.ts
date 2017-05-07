@@ -1,6 +1,7 @@
 ﻿
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/index';
+import { IThought } from '../../models/index';
 
 @Component({
 	selector: 'index',
@@ -8,7 +9,7 @@ import { DataService } from '../../services/index';
 })
 export class IndexComponent implements OnInit{
 	isLoading = true;
-	thoughts: any[];
+	thoughts: IThought[];
 
 	constructor(private data: DataService) { }
 

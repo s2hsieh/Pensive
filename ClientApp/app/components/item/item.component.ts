@@ -1,4 +1,4 @@
-﻿
+﻿import { IThought } from '../../models/index';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
 	templateUrl: './item.component.html'
 })
 export class ItemComponent {
-	@Input() thought;
+	@Input() thought: IThought;
 }
