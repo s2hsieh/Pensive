@@ -9,11 +9,10 @@ namespace Pensive.Models
 {
     public class Credential
     {
-		[Required]
-		[MinLength(3), MaxLength(10)]
+		[Display(Name ="User Name")]
+		[Required(ErrorMessage ="Required")]
 		public string UserName { get; set; }
-		[Required]
-		[MinLength(8), MaxLength(50)]
+		[Required(ErrorMessage = "Required")]
 		public string Password { get; set; }
 	}
 }
