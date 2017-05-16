@@ -1,26 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
-import { DataService, AppComponent, HomeComponent, IndexComponent, ItemComponent } from './index';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DataService, AppComponent, HomeComponent, IndexComponent, ItemComponent, CreateItemComponent } from './index';
 
 @NgModule({
-    bootstrap: [ AppComponent ],
-    declarations: [
-        AppComponent,
+	bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
 		HomeComponent,
 		IndexComponent,
-		ItemComponent
+		ItemComponent,
+		CreateItemComponent
 	],
 	providers: [DataService],
-    imports: [
-        UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+	imports: [
+		UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
+		ReactiveFormsModule,
+		RouterModule.forRoot([
+			{ path: '', redirectTo: 'home', pathMatch: 'full' },
 			{ path: 'home', component: HomeComponent },
-
-            { path: '**', redirectTo: 'home' }
-        ])
-    ]
+			{ path: 'index/create', component: CreateItemComponent },
+			{ path: '**', redirectTo: 'home' }
+		])
+	]
 })
 export class AppModule {
 }
