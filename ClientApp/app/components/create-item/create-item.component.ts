@@ -8,17 +8,25 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 })
 export class CreateItemComponent implements OnInit {
 	createForm: FormGroup;
+	title: FormControl;
+	content: FormControl;
+	color: FormControl;
 
 	constructor(private fb: FormBuilder) { }
 
 	ngOnInit() {
 		this.createForm = this.fb.group({
-			content: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
-			color: ['#ff00ff']
+			title: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]],
+			content: ['', [Validators.required, Validators.maxLength(200)]],
+			color: ['violet']
 		});
+		this.title = <FormControl>this.createForm.controls.title;
+		this.content = <FormControl>this.createForm.controls.content;
+		this.color = <FormControl>this.createForm.controls.color;
 	}
 
 	create(data: IThought) {
 		console.log(data);
+		console.log(this.createForm.controls);
 	}
 }

@@ -14,10 +14,12 @@ namespace Pensive.Models
 		public DateTime DateAdded { get; set; }
 		public DateTime DateModified { get; set; }
 		[Required]
-		[MinLength(3),MaxLength(200)]
+		[MinLength(3), MaxLength(20)]
+		public string Title { get; set; }
+		[Required]
+		[MaxLength(200)]
 		public string Content { get; set; }
 		[Required]
 		public string Color { get; set; }
-		public ICollection<Thought> Links { get; set; }
 	}
 }
