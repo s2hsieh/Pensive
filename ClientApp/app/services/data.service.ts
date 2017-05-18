@@ -21,4 +21,19 @@ export class DataService {
 			color: "blue"
 		}]
 	}
+
+	getAllColors(): string[] {
+		return [
+			"Aqua",
+			"Bisque",
+			"Cyan",
+			"Khaki",
+			"Moccasin",
+			"Plum",
+			"Salmon",
+			"Turquoise",
+			"Violet",
+			"Yellow"
+		];
+	}
 }

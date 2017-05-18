@@ -24,10 +24,14 @@
 			<div class="form-group">
 				<label class="control-label" for="color">Color:</label>
 				<div class="input-group">
-					<input id="color" formControlName="color" class="form-control" />
-					<span [style.background-color]="createForm.value.color" class="input-group-addon"></span>
+					<span [style.background-color]="color.value" class="input-group-addon"></span>
+					<select id="color" formControlName="color" class="form-control">
+						<option *ngFor="let c of colors" [value]="c" [selected]="color.value == c">{{c}}</option>
+					</select>
 				</div>
+				<span class="pull-left text-danger" *ngIf="color.touched && color.errors?.required">Required</span>
 			</div>
+			<br />
 			<div class="form-group">
 				<input class="btn btn-success" type="submit" value="Create" />
 				<a class="pull-right" [routerLink]="['/home']">Cancel</a>
