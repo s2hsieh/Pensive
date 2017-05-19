@@ -9,9 +9,13 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-9">
-			<menu><a [routerLink]="['/index/create']" class="btn btn-success btn-circle"><span class="create fa fa-plus"></span></a></menu>
-			<div *ngFor="let thought of thoughts" class="col-md-6">
-				<item [thought]="thought"></item>
+			<menu>
+				<ul class="list-inline">
+					<li><a [routerLink]="['/index/create']" class="btn btn-success btn-circle"><span class="create fa fa-plus"></span></a></li>
+				</ul>
+			</menu>
+			<div>
+				<item *ngFor="let thought of thoughts" [thought]="thought"></item>
 			</div>
 		</div>
 	</div>

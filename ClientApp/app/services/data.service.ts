@@ -8,7 +8,7 @@ export class DataService {
 			id: 1,
 			title: "t1",
 			content: "first thought",
-			color: "red"
+			color: "Salmon"
 		}, {
 			id: 2,
 			title: "t2",
@@ -18,8 +18,8 @@ export class DataService {
 			id: 3,
 			title: "t3",
 			content: "third though",
-			color: "blue"
-		}]
+			color: "Violet"
+		}];
 	}
 
 	getAllColors(): string[] {

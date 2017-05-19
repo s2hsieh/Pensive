@@ -1,4 +1,17 @@
-﻿<div class="well card" [style.background]="thought.color">
-	<div class="pull-right fa fa-edit"></div>
-	<h3 class="text-center">{{thought.title}}</h3>
+﻿<div [ngClass]="expanded ? 'col-md-12':'col-md-6'">
+	<div class="well card" [style.background]="thought.color">
+		<div>
+			<div class="col-md-12">
+				<div class="pull-right pointable" >
+					<h5 [routerLink]="['../edit', thought.id]" class="fa fa-edit"></h5>
+				</div>
+			</div>
+			<div class="pointable" (click)="expand()">
+				<h4 class="text-center">{{thought.title}}</h4>
+			</div>
+		</div>
+		<div *ngIf="expanded">
+			<p>{{thought.content}}</p>
+		</div>
+	</div>
 </div>

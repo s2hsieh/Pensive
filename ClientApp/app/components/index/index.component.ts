@@ -12,10 +12,10 @@ export class IndexComponent implements OnInit{
 	isLoading = true;
 	thoughts: IThought[];
 
-	constructor(private data: DataService) { }
+	constructor(private ds: DataService) { }
 
 	ngOnInit() {
-		this.thoughts = this.data.getAll();
+		this.thoughts = this.ds.getAll();
 		this.isLoading = false;
 	}
 }
