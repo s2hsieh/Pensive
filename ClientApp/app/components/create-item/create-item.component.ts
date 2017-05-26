@@ -5,7 +5,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 
 @Component({
 	selector: 'create-item',
-	templateUrl:'./create-item.component.html'
+	templateUrl: './create-item.component.html'
 })
 export class CreateItemComponent implements OnInit {
 	createForm: FormGroup;

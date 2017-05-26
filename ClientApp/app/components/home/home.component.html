@@ -1,1 +1,16 @@
-<index></index>
+<header>
+	<h3 class="text-center">Thoughts</h3>
+	<hr />
+</header>
+<main class="well-lg">
+	<h2 style="color:purple" class="text-center" *ngIf="isLoading"><span class=" fa fa-spinner fa-spin"></span> Loading...</h2>
+
+	<div class="row">
+		<div class="col-md-3">
+			<filter-menu></filter-menu>
+		</div>
+		<div class="col-md-9">
+			<index [thoughts]="filteredThoughts"></index>
+		</div>
+	</div>
+</main>

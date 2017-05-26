@@ -4,11 +4,11 @@ import { Component, Input } from '@angular/core';
 @Component({
 	selector: 'item',
 	templateUrl: './item.component.html',
-	styleUrls:['./item.component.css']
+	styleUrls: ['./item.component.css']
 })
 export class ItemComponent {
 	@Input() thought: IThought;
-	expanded: boolean = false;
+	expanded = false;
 
 	expand() {
 		this.expanded = !this.expanded;
