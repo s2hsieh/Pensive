@@ -1,5 +1,5 @@
 ﻿export interface IFilter {
 	color: string;
-	serch: string;
+	search: string;
 	sortBy: string;
 }

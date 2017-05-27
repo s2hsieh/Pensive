@@ -1,17 +1,25 @@
 ﻿import { IFilter } from '../../models/index';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { DataService } from '../../services/index';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'filter-menu',
 	templateUrl: './filter-menu.component.html'
 })
-export class FilterMenuComponent {
+export class FilterMenuComponent implements OnInit {
 	filters: IFilter = {
 		color: "",
-		serch: "",
+		search: "",
 		sortBy:"date"
 	}
 	@Output() changeFilter = new EventEmitter();
+	colors: string[];
+
+	constructor(private ds: DataService) { }
+
+	ngOnInit() {
+		this.colors = this.ds.getAllColors();
+	}
 
 	updateFilter() {
 		this.changeFilter.emit(this.filters);

@@ -1,6 +1,28 @@
-﻿<div class="panel panel-primary">
-	<div class="panel-heading">Filters</div>
+﻿<div class="panel panel-default">
+	<div class="panel-heading text-center">Options</div>
 	<div class="panel-body">
-		
+		<div class="form-group">
+			<label class="control-label">Search:</label>
+			<input (input)="filters.search = $event.target.value; updateFilter()" class="form-control" type="search" />
+		</div>
+		<br />
+		<div class="form-group">
+			<label class="control-label">Sort By:</label>
+			<div class="radio">
+				<label><input type="radio" [checked]="filters.sortBy == 'date'" (click)="filters.sortBy = 'date'; updateFilter()" />Date</label>
+				<label><input type="radio" [checked]="filters.sortBy == 'title'" (click)="filters.sortBy = 'title'; updateFilter()" />Title</label>
+			</div>
+		</div>
+		<br />
+		<div class="form-group">
+			<label class="control-label">Categories:</label>
+			<div class="btn-group">
+				<div class="btn btn-lg" [class.active]="filters.color == ''" (click)="filters.color = ''; updateFilter()"><i class="fa fa-close"></i></div>
+				<div *ngFor="let c of colors" [class.active]="c == filters.color" class="btn btn-lg" [style.background]="c" (click)="filters.color = c; updateFilter()"></div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer">
+
 	</div>
 </div>

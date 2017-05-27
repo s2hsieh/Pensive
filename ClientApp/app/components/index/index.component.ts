@@ -1,4 +1,4 @@
-﻿import { IThought } from '../../models/index';
+﻿import { IThought, IFilter } from '../../models/index';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
 	templateUrl: './index.component.html',
 	styleUrls: ['./index.component.css']
 })
-export class IndexComponent{
+export class IndexComponent {
 	@Input() thoughts: IThought[];
 }

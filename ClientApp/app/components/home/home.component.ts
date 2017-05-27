@@ -8,7 +8,7 @@ import { IThought, IFilter } from '../../models/index';
 export class HomeComponent implements OnInit {
 	isLoading = true;
 	thoughts: IThought[];
-	filteredThoughts: IThought[] = [];
+	filteredThoughts: IThought[];
 
 	constructor(private ds: DataService) { }
 
@@ -21,9 +21,17 @@ export class HomeComponent implements OnInit {
 	changeFilter(filter: IFilter) {
 		this.filteredThoughts = this.thoughts.slice(0);
 		if (filter.color) {
-			this.filteredThoughts.filter(t => t.color == filter.color);
-		} else if (filter.serch) {
-			this.filteredThoughts.filter(t => t.title.includes(filter.serch) || t.content.includes(filter.serch));
-		} 
+			this.filteredThoughts = this.filteredThoughts.filter(t => t.color == filter.color);
+		}
+		if (filter.search) {
+			this.filteredThoughts = this.filteredThoughts.filter(t => t.title.includes(filter.search) || t.content.includes(filter.search));
+		}
+		if (filter.sortBy == 'date') {
+
+		}
+		if (filter.sortBy == 'title') {
+
+		}
+
 	}
 }

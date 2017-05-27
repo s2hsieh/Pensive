@@ -13,7 +13,7 @@ export class DataService {
 			id: 2,
 			title: "t2",
 			content: "second thought",
-			color: "yellow"
+			color: "Yellow"
 		}, {
 			id: 3,
 			title: "t3",
