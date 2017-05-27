@@ -1,8 +1,10 @@
-﻿<menu>
-	<ul class="list-inline">
-		<li><a [routerLink]="['/index/create']" class="btn btn-success btn-circle"><span class="create fa fa-plus"></span></a></li>
-	</ul>
-</menu>
-<div>
-	<item *ngFor="let thought of thoughts" [thought]="thought"></item>
+﻿<div class="panel panel-body">
+	<menu>
+		<ul class="list-inline">
+			<li><a [routerLink]="['/index/create']" class="btn btn-success btn-circle"><i class="fa fa-3x fa-plus"></i></a></li>
+		</ul>
+	</menu>
+	<div>
+		<item *ngFor="let thought of thoughts" [thought]="thought"></item>
+	</div>
 </div>

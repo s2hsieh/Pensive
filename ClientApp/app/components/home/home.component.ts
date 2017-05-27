@@ -27,10 +27,10 @@ export class HomeComponent implements OnInit {
 			this.filteredThoughts = this.filteredThoughts.filter(t => t.title.includes(filter.search) || t.content.includes(filter.search));
 		}
 		if (filter.sortBy == 'date') {
-
+			//this.filteredThoughts = this.filteredThoughts.sort((t1, t2) => t1.dateModified.getTime() - t2.dateModified.getTime())
 		}
 		if (filter.sortBy == 'title') {
-
+			this.filteredThoughts = this.filteredThoughts.sort((t1, t2) => t1.title > t2.title ? 1 : -1)
 		}
 
 	}

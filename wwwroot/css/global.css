@@ -7,3 +7,14 @@
 .pointable {
 	cursor: pointer;
 }
+
+.btn-circle {
+	display: inline-block;
+	border-radius: 50%;
+}
+
+.card {
+	box-shadow: lightgray 5px 5px;
+	border-radius: 4px 4px;
+	padding-top: 0;
+}

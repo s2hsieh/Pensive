@@ -10,7 +10,7 @@ export class FilterMenuComponent implements OnInit {
 	filters: IFilter = {
 		color: "",
 		search: "",
-		sortBy:"date"
+		sortBy: "date"
 	}
 	@Output() changeFilter = new EventEmitter();
 	colors: string[];
@@ -21,7 +21,8 @@ export class FilterMenuComponent implements OnInit {
 		this.colors = this.ds.getAllColors();
 	}
 
-	updateFilter() {
+	updateFilter(element: string, value: string) {
+		this.filters[element] = value;
 		this.changeFilter.emit(this.filters);
 	}
 }

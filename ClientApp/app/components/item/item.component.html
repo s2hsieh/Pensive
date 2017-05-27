@@ -2,8 +2,8 @@
 	<div class="well card" [style.background]="thought.color">
 		<div>
 			<div class="col-md-12">
-				<div class="pull-right pointable" >
-					<h5 [routerLink]="['/index/edit', thought.id]" class="fa fa-edit"></h5>
+				<div class="pull-right btn btn-circle" [routerLink]="['/index/edit', thought.id]">
+					<i class="fa fa-edit"></i>
 				</div>
 			</div>
 			<div class="pointable" (click)="expand()">
