@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DataService, AppComponent, HomeComponent, IndexComponent, ItemComponent, CreateItemComponent, EditItemComponent, FilterMenuComponent } from './index';
+import { DataService, AppComponent, HomeComponent, IndexComponent, ItemComponent, CreateItemComponent, EditItemComponent, FilterMenuComponent, HeaderComponent } from './index';
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -13,7 +13,8 @@ import { DataService, AppComponent, HomeComponent, IndexComponent, ItemComponent
 		ItemComponent,
 		CreateItemComponent,
 		EditItemComponent,
-		FilterMenuComponent
+		FilterMenuComponent,
+		HeaderComponent
 	],
 	providers: [DataService],
 	imports: [
