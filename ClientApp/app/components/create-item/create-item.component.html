@@ -1,37 +1,38 @@
-﻿<main-header></main-header>
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<form [formGroup]="createForm" (ngSubmit)="create(createForm.value)">
-			<div class="form-group">
-				<label class="control-label" for="title">Title:</label>
-				<input formControlName="title" id="title" class="form-control" />
-				<span class="pull-left text-danger" *ngIf="title.touched && title.errors?.required">Required</span>
-				<span class="pull-left text-danger" *ngIf="title.touched && (title.errors?.maxlength || title.errors?.minlength)">Must be between 3 and 20 characters</span>
-			</div>
-			<br />
-			<div class="form-group">
-				<label class="control-label" for="content">Content:</label>
-				<textarea rows="5" formControlName="content" id="content" class="form-control"></textarea>
-				<span class="pull-right">{{200 - content.value.length}}</span>
-				<span class="pull-left text-danger" *ngIf="content.touched && content.errors?.required">Required</span>
-				<span class="pull-left text-danger" *ngIf="content.touched && content.errors?.maxlength">Cannot exceed 200 characters</span>
-			</div>
-			<br />
-			<div class="form-group">
-				<label class="control-label" for="color">Color:</label>
-				<div class="input-group">
-					<span [style.background-color]="color.value" class="input-group-addon"></span>
-					<select id="color" formControlName="color" class="form-control">
-						<option *ngFor="let c of colors" [value]="c" [selected]="color.value == c">{{c}}</option>
-					</select>
+﻿<div class="row">
+	<div class="col-md-6 col-md-offset-3 panel">
+		<div class="panel-body">
+			<form [formGroup]="createForm" (ngSubmit)="create(createForm.value)">
+				<div class="form-group">
+					<label class="control-label" for="title">Title:</label>
+					<input formControlName="title" id="title" class="form-control" />
+					<span class="pull-left text-danger" *ngIf="title.touched && title.errors?.required">Required</span>
+					<span class="pull-left text-danger" *ngIf="title.touched && (title.errors?.maxlength || title.errors?.minlength)">Must be between 3 and 20 characters</span>
 				</div>
-				<span class="pull-left text-danger" *ngIf="color.touched && color.errors?.required">Required</span>
-			</div>
-			<br />
-			<div class="form-group">
-				<input class="btn btn-success" type="submit" value="Create" />
-				<a class="pull-right" [routerLink]="['/home']">Cancel</a>
-			</div>
-		</form>
+				<br />
+				<div class="form-group">
+					<label class="control-label" for="content">Content:</label>
+					<textarea rows="5" formControlName="content" id="content" class="form-control"></textarea>
+					<span class="pull-right">{{200 - content.value.length}}</span>
+					<span class="pull-left text-danger" *ngIf="content.touched && content.errors?.required">Required</span>
+					<span class="pull-left text-danger" *ngIf="content.touched && content.errors?.maxlength">Cannot exceed 200 characters</span>
+				</div>
+				<br />
+				<div class="form-group">
+					<label class="control-label" for="color">Color:</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i [style.color]="color.value" class="fa fa-2x fa-square"></i></span>
+						<select id="color" formControlName="color" class="form-control">
+							<option *ngFor="let c of colors" [value]="c" [selected]="color.value == c">{{c}}</option>
+						</select>
+					</div>
+					<span class="pull-left text-danger" *ngIf="color.touched && color.errors?.required">Required</span>
+				</div>
+				<br />
+				<div class="form-group">
+					<input class="btn btn-success" type="submit" value="Create" />
+					<a class="pull-right" [routerLink]="['/home']">Cancel</a>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>

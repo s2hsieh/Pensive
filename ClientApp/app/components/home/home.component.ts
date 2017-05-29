@@ -18,13 +18,14 @@ export class HomeComponent implements OnInit {
 		this.isLoading = false;
 	}
 
-	changeFilter(filter: IFilter) {
+	applyFilter(filter: IFilter) {
 		this.filteredThoughts = this.thoughts.slice(0);
 		if (filter.color) {
 			this.filteredThoughts = this.filteredThoughts.filter(t => t.color == filter.color);
 		}
 		if (filter.search) {
-			this.filteredThoughts = this.filteredThoughts.filter(t => t.title.includes(filter.search) || t.content.includes(filter.search));
+			var search = filter.search.toLowerCase();
+			this.filteredThoughts = this.filteredThoughts.filter(t => t.title.toLowerCase().includes(search) || t.content.toLowerCase().includes(search));
 		}
 		if (filter.sortBy == 'date') {
 			//this.filteredThoughts = this.filteredThoughts.sort((t1, t2) => t1.dateModified.getTime() - t2.dateModified.getTime())

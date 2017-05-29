@@ -6,17 +6,17 @@ export class DataService {
 	getYourThoughts(): IThought[] {
 		return [{
 			id: 1,
-			title: "summer plan",
+			title: "Summer plan",
 			content: "first thought",
 			color: "Salmon"
 		}, {
 			id: 2,
-			title: "fall plan",
+			title: "Fall plan",
 			content: "second thought",
 			color: "Yellow"
 		}, {
 			id: 3,
-			title: "winter plan",
+			title: "Winter plan",
 			content: "third though",
 			color: "Violet"
 		}];
