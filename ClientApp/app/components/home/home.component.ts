@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 	constructor(private ds: DataService) { }
 
 	ngOnInit() {
-		this.thoughts = this.ds.getAll();
+		this.thoughts = this.ds.getYourThoughts();
 		this.filteredThoughts = this.thoughts.slice(0);
 		this.isLoading = false;
 	}

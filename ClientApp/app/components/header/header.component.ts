@@ -1,23 +1,25 @@
 ﻿import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
 	selector: 'main-header',
 	templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-	heading: string = "Pensive";
-	activeUrl: string;
+	heading: string;
+	title: string = 'Test';
 
 	constructor(private ar: ActivatedRoute) { }
 
 	ngOnInit() {
-		this.ar.url.subscribe(url => {
-			this.activeUrl = "/" + url.join('/');
-			switch (this.activeUrl) {
-				case '/index/create': this.heading = "Create"; break;
-				default: this.heading = "Pensive";
-			}
-		});
+		switch (this.ar.routeConfig.path) {
+			case 'index/create':
+				this.heading = "Create";
+				break;
+			case 'index/edit/:id':
+				this.heading = `Edit ${this.title}`;
+				break;
+			default: this.heading = "Pensive";
+		}
 	}
 }

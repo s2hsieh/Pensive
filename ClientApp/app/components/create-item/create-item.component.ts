@@ -17,7 +17,7 @@ export class CreateItemComponent implements OnInit {
 	constructor(private fb: FormBuilder, private ds: DataService) { }
 
 	ngOnInit() {
-		this.colors = this.ds.getAllColors();
+		this.colors = this.ds.getYourColors();
 
 		this.createForm = this.fb.group({
 			title: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]],
@@ -30,6 +30,8 @@ export class CreateItemComponent implements OnInit {
 	}
 
 	create(data: IThought) {
-		console.log(data);
+		if (this.createForm.valid) {
+			console.log(data);
+		}
 	}
 }

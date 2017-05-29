@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DataService {
-	getAll(): IThought[] {
+	getYourThoughts(): IThought[] {
 		return [{
 			id: 1,
 			title: "summer plan",
@@ -22,7 +22,16 @@ export class DataService {
 		}];
 	}
 
-	getAllColors(): string[] {
+	getThought(id: number): IThought {
+		console.log(id);
+		return {
+			title: "Test",
+			content: "Dummy date",
+			color:"Aqua"
+		}
+	}
+
+	getYourColors(): string[] {
 		return [
 			"Aqua",
 			"Bisque",
