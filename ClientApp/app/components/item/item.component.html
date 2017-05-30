@@ -2,7 +2,7 @@
 	<div class="well card" [style.background]="thought.color">
 		<div>
 			<div *ngIf="expanded" class="col-md-12">
-				<div class="pull-right btn btn-circle" [routerLink]="['/index/edit', thought.id]">
+				<div class="pull-right btn btn-circle" [routerLink]="['edit', thought.id]">
 					<i class="fa fa-edit"></i>
 				</div>
 			</div>

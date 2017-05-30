@@ -7,7 +7,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 })
 export class IndexComponent implements OnChanges {
 	@Input() thoughts: IThought[];
-	empty: boolean = false;
+	empty: boolean = true;
 
 	ngOnChanges() {
 		if (this.thoughts.length == 0) {

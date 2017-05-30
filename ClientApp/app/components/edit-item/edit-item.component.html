@@ -13,7 +13,7 @@
 				<div class="form-group">
 					<label class="control-label" for="color">Color:</label>
 					<div class="input-group">
-						<span class="input-group-addon"><i [style.color]="color.value" class="fa fa-2x fa-square"></i></span>
+						<span class="input-group-addon"><i [style.color]="color.value" class="fa fa-3x fa-tag"></i></span>
 						<select id="color" formControlName="color" class="form-control">
 							<option *ngFor="let c of colors" [value]="c" [selected]="color.value == c">{{c}}</option>
 						</select>
