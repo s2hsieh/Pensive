@@ -18,7 +18,7 @@ export class EditItemComponent implements OnInit {
 	constructor(private fb: FormBuilder, private ds: DataService, private ar: ActivatedRoute) { }
 
 	ngOnInit() {
-		this.colors = this.ds.getYourColors();
+		this.colors = this.ds.getAllColors();
 		this.ar.url.subscribe(url => {
 			this.currentData = this.ds.getThought(+url[url.length - 1].path);
 		});

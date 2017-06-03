@@ -34,10 +34,9 @@ import { DataService } from './services/index';
 			{ path: '', redirectTo: 'index', pathMatch: 'full' },
 			{ path: 'index', component: HomeComponent },
 			{ path: 'index/create', component: CreateItemComponent },
-			{ path: 'index/edit/:id', component: EditItemComponent	},
+			{ path: 'index/edit/:id', component: EditItemComponent },
 			{ path: '**', redirectTo: 'index' }
 		])
 	]
 })
-export class AppModule {
-}
+export class AppModule { }

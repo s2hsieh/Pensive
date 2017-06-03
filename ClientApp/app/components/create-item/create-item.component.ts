@@ -2,6 +2,7 @@
 import { DataService } from '../../services/index';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'create-item',
@@ -14,10 +15,10 @@ export class CreateItemComponent implements OnInit {
 	color: FormControl;
 	colors: string[];
 
-	constructor(private fb: FormBuilder, private ds: DataService) { }
+	constructor(private fb: FormBuilder, private ds: DataService, private r: Router) { }
 
 	ngOnInit() {
-		this.colors = this.ds.getYourColors();
+		this.colors = this.ds.getAllColors();
 
 		this.createForm = this.fb.group({
 			title: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]],
@@ -31,7 +32,8 @@ export class CreateItemComponent implements OnInit {
 
 	create(data: IThought) {
 		if (this.createForm.valid) {
-			console.log(data);
+			this.ds.createThought(data).subscribe(t => console.log(t));
+			this.r.navigate(['/index']);
 		}
 	}
 }

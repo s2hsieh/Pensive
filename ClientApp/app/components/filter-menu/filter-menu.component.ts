@@ -18,7 +18,7 @@ export class FilterMenuComponent implements OnInit {
 	constructor(private ds: DataService) { }
 
 	ngOnInit() {
-		this.colors = this.ds.getYourColors();
+		this.colors = this.ds.getAllColors();
 	}
 
 	updateFilter(element: string, value: string) {

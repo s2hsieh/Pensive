@@ -1,8 +1,14 @@
 ﻿import { IThought } from '../models/index';
 import { Injectable } from '@angular/core';
+import { Jsonp, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class DataService {
+	private apiUrl: string = '/api/thoughts';
+
+	constructor(private json: Jsonp) { }
+
 	getYourThoughts(): IThought[] {
 		return [{
 			id: 1,
@@ -31,7 +37,12 @@ export class DataService {
 		}
 	}
 
-	getYourColors(): string[] {
+	createThought(thought: IThought): Observable<IThought>{
+		return this.json.put(this.apiUrl, thought)
+			.map((r: Response) => <IThought>r.json());
+	}
+
+	getAllColors(): string[] {
 		return [
 			"Aqua",
 			"Bisque",
@@ -44,5 +55,9 @@ export class DataService {
 			"Violet",
 			"Yellow"
 		];
+	}
+
+	private handleError(e: Response) {
+		return Observable.throw(e.statusText);
 	}
 }
