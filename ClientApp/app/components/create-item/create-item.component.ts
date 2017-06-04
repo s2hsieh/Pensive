@@ -31,9 +31,7 @@ export class CreateItemComponent implements OnInit {
 	}
 
 	create(data: IThought) {
-		if (this.createForm.valid) {
-			this.ds.createThought(data).subscribe(t => console.log(t));
-			this.r.navigate(['/index']);
-		}
+		this.ds.createThought(data).subscribe();
+		this.r.navigate(['/index']);
 	}
 }
