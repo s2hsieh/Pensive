@@ -9,23 +9,10 @@ export class DataService {
 
 	constructor(private http: Http) { }
 
-	getYourThoughts(): IThought[] {
-		return [{
-			id: 1,
-			title: "Summer plan",
-			content: "first thought",
-			color: "Salmon"
-		}, {
-			id: 2,
-			title: "Fall plan",
-			content: "second thought",
-			color: "Yellow"
-		}, {
-			id: 3,
-			title: "Winter plan",
-			content: "third though",
-			color: "Violet"
-		}];
+	getYourThoughts(): Observable<IThought[]> {
+		return this.http.get(this.apiUrl)
+			.map(r => r.json() || {})
+			.catch(this.handleError)
 	}
 
 	getThought(id: number): IThought {
