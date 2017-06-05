@@ -11,7 +11,7 @@ export class DataService {
 
 	getYourThoughts(): Observable<IThought[]> {
 		return this.http.get(this.apiUrl)
-			.map(r => r.json() || {})
+			.map(r => r.json())
 			.catch(this.handleError)
 	}
 

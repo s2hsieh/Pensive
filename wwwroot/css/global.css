@@ -17,3 +17,7 @@
 	box-shadow: lightgray 5px 5px;
 	border-radius: 4px 4px;
 }
+
+.multiline {
+	white-space:pre-wrap;
+}

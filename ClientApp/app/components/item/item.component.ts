@@ -8,8 +8,4 @@ import { Component, Input } from '@angular/core';
 export class ItemComponent {
 	@Input() thought: IThought;
 	expanded = false;
-
-	expand() {
-		this.expanded = !this.expanded;
-	}
 }
