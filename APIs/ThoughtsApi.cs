@@ -70,7 +70,7 @@ namespace Pensive.APIs
 				}
 				else
 				{
-					return BadRequest("Invalid ModelState");
+					return BadRequest(ModelState);
 				}
 			}
 			catch (Exception ex)
@@ -97,11 +97,15 @@ namespace Pensive.APIs
 							{
 								return Challenge();
 							}
+							else
+							{
+								return BadRequest("Error manipulating database.");
+							}
 						}
 					}
 					catch (Exception ex)
 					{
-						return BadRequest(ex.Message);
+						return BadRequest(ex);
 					}
 				}
 				else
@@ -109,7 +113,7 @@ namespace Pensive.APIs
 					return Unauthorized();
 				}
 			}
-			return BadRequest("Invalid ModelState");
+			return BadRequest(ModelState);
 		}
 	}
 }

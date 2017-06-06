@@ -12,7 +12,8 @@ import {
 	FilterMenuComponent,
 	HeaderComponent
 } from './components/index';
-import { DataService } from './services/index';
+import {
+	DataService, DataResolver } from './services/index';
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -26,7 +27,7 @@ import { DataService } from './services/index';
 		FilterMenuComponent,
 		HeaderComponent
 	],
-	providers: [DataService],
+	providers: [DataService, DataResolver],
 	imports: [
 		UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
 		ReactiveFormsModule,
@@ -34,7 +35,7 @@ import { DataService } from './services/index';
 			{ path: '', redirectTo: 'index', pathMatch: 'full' },
 			{ path: 'index', component: HomeComponent },
 			{ path: 'index/create', component: CreateItemComponent },
-			{ path: 'index/edit/:id', component: EditItemComponent },
+			{ path: 'index/edit/:id', component: EditItemComponent, resolve: { thought: DataResolver } },
 			{ path: '**', redirectTo: 'index' }
 		])
 	]

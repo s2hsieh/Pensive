@@ -11,21 +11,24 @@ export class DataService {
 
 	getYourThoughts(): Observable<IThought[]> {
 		return this.http.get(this.apiUrl)
-			.map(r => r.json())
+			.map(r => <IThought>r.json())
 			.catch(this.handleError)
 	}
 
-	getThought(id: number): IThought {
-		console.log(id);
-		return {
-			title: "Test",
-			content: "Dummy date",
-			color:"Aqua"
-		}
+	getThought(id: number): Observable<IThought> {
+		return this.http.get(`${this.apiUrl}/${id}`)
+			.map(r => <IThought>r.json())
+			.catch(this.handleError);
 	}
 
 	createThought(thought: IThought): Observable<IThought>{
 		return this.http.post(this.apiUrl, thought)
+			.map(r => <IThought>r.json())
+			.catch(this.handleError);
+	}
+
+	updateThought(thought: IThought): Observable<IThought> {
+		return this.http.put(`${this.apiUrl}/${thought.id}`, thought)
 			.map(r => <IThought>r.json())
 			.catch(this.handleError);
 	}
