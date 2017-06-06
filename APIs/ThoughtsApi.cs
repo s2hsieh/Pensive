@@ -80,27 +80,23 @@ namespace Pensive.APIs
 		}
 
 		[HttpPut("{id}")]
-		public async Task<IActionResult> EditThought(int id, [FromBody] Thought newThought)
+		public async Task<IActionResult> EditThought(int id, [FromBody] Thought updatedThought)
 		{
 			if (ModelState.IsValid)
 			{
-				if (newThought.UserName == this.User.Identity.Name && id == newThought.Id)
+				if (updatedThought.UserName == this.User.Identity.Name && id == updatedThought.Id)
 				{
 					try
 					{
-						var oldThought = _repo.GetThoughtById(newThought.UserName, id);
-						if (oldThought.DateAdded == newThought.DateAdded)
+						updatedThought.DateModified = DateTime.UtcNow;
+						_repo.EditThought(updatedThought);
+						if (await _repo.SaveAllAsync())
 						{
-							newThought.DateModified = DateTime.UtcNow;
-							_repo.EditThought(newThought);
-							if (await _repo.SaveAllAsync())
-							{
-								return Challenge();
-							}
-							else
-							{
-								return BadRequest("Error manipulating database.");
-							}
+							return NoContent();
+						}
+						else
+						{
+							return BadRequest("Error manipulating database.");
 						}
 					}
 					catch (Exception ex)

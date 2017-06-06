@@ -31,7 +31,6 @@ export class CreateItemComponent implements OnInit {
 	}
 
 	create(data: IThought) {
-		this.ds.createThought(data).subscribe();
-		this.r.navigate(['/index']);
+		this.ds.createThought(data).subscribe(t => this.r.navigate(['/index']));
 	}
 }
