@@ -1,8 +1,8 @@
 ﻿export interface IThought {
-	id?: number;
-	userName?: string;
-	dateAdded?: Date;
-	dateModified?: Date;
+	readonly id?: number;
+	readonly userName?: string;
+	readonly dateAdded?: Date;
+	readonly dateModified?: Date;
 	title: string;
 	content: string;
 	color: string;
