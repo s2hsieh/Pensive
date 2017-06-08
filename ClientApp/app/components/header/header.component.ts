@@ -1,5 +1,6 @@
 ﻿import { Router, NavigationEnd } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
+import { DataService, UserService } from '../../services/index';
 
 @Component({
 	selector: 'main-header',
@@ -7,22 +8,29 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 	heading: string;
-	title: string = 'Test';
+	userName: string;
 
-	constructor(private r: Router) { }
+	constructor(private r: Router, private ds: DataService, private us: UserService) { }
 
 	ngOnInit() {
+
 		this.r.events.subscribe(ne => {
 			if (ne instanceof NavigationEnd) {
 				var url = this.r.url;
 				if (url.startsWith('/index/create')) {
 					this.heading = 'Create';
 				} else if (url.startsWith('/index/edit/')) {
-					this.heading = `Edit ${this.title}`;
+					this.ds.getThought(+url.slice(url.lastIndexOf('/') + 1)).subscribe(t => this.heading = `Edit ${t.title}`);
 				} else {
 					this.heading = "Pensive";
 				}
 			}
 		});
+
+		this.us.getuserName().then(user => this.userName = user).catch(e => console.log(e));;
+	}
+
+	logout() {
+		this.us.logout().then(status => console.log(status));
 	}
 }

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class DataService {
-	private apiUrl: string = 'api/thoughts';
+	private readonly apiUrl: string = 'api/thoughts';
 
 	constructor(private http: Http) { }
 

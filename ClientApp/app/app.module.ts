@@ -12,8 +12,7 @@ import {
 	FilterMenuComponent,
 	HeaderComponent
 } from './components/index';
-import {
-	DataService, DataResolver } from './services/index';
+import { DataService, DataResolver, UserService } from './services/index';
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -27,7 +26,7 @@ import {
 		FilterMenuComponent,
 		HeaderComponent
 	],
-	providers: [DataService, DataResolver],
+	providers: [DataService, DataResolver, UserService],
 	imports: [
 		UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
 		ReactiveFormsModule,

@@ -1,4 +1,5 @@
 ﻿<header>
+	<h6 *ngIf="userName" class="pull-right">Logged In as {{userName}} <i (click)="logout()" class="pointable fa fa-sign-out"></i></h6>
 	<h3 class="text-center">{{heading}}</h3>
 	<hr />
 </header>
