@@ -1,5 +1,6 @@
 ﻿import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class UserService {
@@ -9,10 +10,7 @@ export class UserService {
 
 	getuserName(): Promise<string> {
 		return this.http.get(`${this.apiUrl}/id`).toPromise()
-			.then(r => r.text());
-	}
-
-	logout(): Promise<any> {
-		return this.http.put(`${this.apiUrl}/logout`, {}).toPromise();
+			.then(r => r.text())
+			.catch(e => console.log(e));
 	}
 }

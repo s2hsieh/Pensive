@@ -24,10 +24,5 @@ namespace Pensive.APIs
 			}
 		}
 
-		[HttpPut("logout")]
-		public IActionResult Logout() {
-			RedirectToAction("Logout", "Auth");
-			return NoContent();
-		}
     }
 }

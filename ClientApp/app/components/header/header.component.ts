@@ -27,10 +27,10 @@ export class HeaderComponent implements OnInit {
 			}
 		});
 
-		this.us.getuserName().then(user => this.userName = user).catch(e => console.log(e));;
+		this.us.getuserName().then(user => this.userName = user);
 	}
 
 	logout() {
-		this.us.logout().then(status => console.log(status));
+		location.replace("/Auth/Logout");
 	}
 }
