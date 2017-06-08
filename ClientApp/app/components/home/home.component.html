@@ -3,7 +3,7 @@
 
 	<div *ngIf="!isLoading" class="row">
 		<div class="col-md-3">
-			<filter-menu (changeFilter)="applyFilter($event)"></filter-menu>
+			<filter-menu (changeFilter)="applyFilter($event)" [thoughts]="thoughts"></filter-menu>
 		</div>
 		<div class="col-md-9">
 			<index [thoughts]="filteredThoughts"></index>

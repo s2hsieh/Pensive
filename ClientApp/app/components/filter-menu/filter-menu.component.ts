@@ -1,6 +1,6 @@
-﻿import { IFilter } from '../../models/index';
+﻿import { IFilter, IThought, IColor } from '../../models/index';
 import { DataService } from '../../services/index';
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 
 @Component({
 	selector: 'filter-menu',
@@ -13,12 +13,24 @@ export class FilterMenuComponent implements OnInit {
 		sortBy: "date"
 	}
 	@Output() changeFilter = new EventEmitter();
-	colors: string[];
+	@Input() thoughts: IThought[];
+	colors: IColor[] = [];
 
 	constructor(private ds: DataService) { }
 
 	ngOnInit() {
-		this.colors = this.ds.getAllColors();
+		//let temp = this.thoughts.map(t => t.color);
+		//this.colors = Array.from(new Set(temp));
+		this.thoughts.forEach(t => {
+			let c = t.color;
+			let x = this.colors.map(c => c.color);
+			let i = x.indexOf(c);
+			if (!this.colors[i]) {
+				this.colors.push({color:c, count: 1});
+			} else {
+				this.colors[i].count++;
+			}
+		});
 	}
 
 	updateFilter(element: string, value: string) {
