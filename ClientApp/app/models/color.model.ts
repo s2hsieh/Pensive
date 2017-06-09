@@ -1,4 +1,4 @@
 ﻿export interface IColor {
-	color: string;
+	name: string;
 	count: number;
 }

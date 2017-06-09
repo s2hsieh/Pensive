@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
 		this.r.events.subscribe(ne => {
 			if (ne instanceof NavigationEnd) {
-				var url = this.r.url;
+				let url = this.r.url;
 				if (url.startsWith('/index/create')) {
 					this.heading = 'Create';
 				} else if (url.startsWith('/index/edit/')) {

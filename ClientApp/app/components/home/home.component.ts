@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 			this.filteredThoughts = this.filteredThoughts.filter(t => t.color == filter.color);
 		}
 		if (filter.search) {
-			var search = filter.search.toLowerCase();
+			let search = filter.search.toLowerCase();
 			this.filteredThoughts = this.filteredThoughts.filter(t => t.title.toLowerCase().includes(search) || t.content.toLowerCase().includes(search));
 		}
 		if (filter.sortBy == 'date') {

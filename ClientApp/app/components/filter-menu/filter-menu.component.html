@@ -19,7 +19,9 @@
 			<label class="control-label">Categories:</label>
 			<div class="btn-group">
 				<div class="btn btn-lg" title="Clear" [class.active]="filters.color == ''" (click)="updateFilter('color', '')"><i class="fa fa-close"></i></div>
-				<div *ngFor="let c of colors" [title]="c.color" [class.active]="c.color == filters.color" class="btn btn-lg" [style.background]="c.color" (click)="updateFilter('color', c.color)">{{c.count}}</div>
+				<div style="display:inline" *ngFor="let c of colors">
+					<div *ngIf="c.count" [title]="c.name" [class.active]="c.name == filters.color" class="btn btn-lg" [style.background]="c.name" (click)="updateFilter('color', c.name)">{{c.count}}</div>
+				</div>
 			</div>
 		</div>
 	</div>

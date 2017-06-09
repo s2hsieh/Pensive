@@ -1,5 +1,6 @@
 ﻿import { IFilter, IThought, IColor } from '../../models/index';
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
+import { DataService } from '../../services/index';
 
 @Component({
 	selector: 'filter-menu',
@@ -18,15 +19,10 @@ export class FilterMenuComponent implements OnInit {
 	constructor(private ds: DataService) { }
 
 	ngOnInit() {
+		let keys = this.ds.getAllColors();
+		this.colors = keys.map(k => <IColor>{ name: k, count: 0 });
 		this.thoughts.forEach(t => {
-			let c = t.color;
-			let x = this.colors.map(c => c.color);
-			let i = x.indexOf(c);
-			if (!this.colors[i]) {
-				this.colors.push({color:c, count: 1});
-			} else {
-				this.colors[i].count++;
-			}
+			this.colors[keys.indexOf(t.color)].count++;
 		});
 	}
 
