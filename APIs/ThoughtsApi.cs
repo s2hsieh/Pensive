@@ -111,5 +111,34 @@ namespace Pensive.APIs
 			}
 			return BadRequest(ModelState);
 		}
+
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteThough(int id)
+		{
+			var thought = _repo.GetThoughtById(this.User.Identity.Name, id);
+			if (thought != null)
+			{
+				try
+				{
+					_repo.DeleteThought(thought);
+					if (await _repo.SaveAllAsync())
+					{
+						return NoContent();
+					}
+					else
+					{
+						return BadRequest("Error manipulating database.");
+					}
+				}
+				catch (Exception ex)
+				{
+					return BadRequest(ex);
+				}
+			}
+			else
+			{
+				return Unauthorized();
+			}
+		}
 	}
 }

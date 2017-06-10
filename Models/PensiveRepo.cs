@@ -20,11 +20,15 @@ namespace Pensive.Models
 			_db.Thoughts.Add(thought);
 		}
 
+		public void DeleteThought(Thought thought)
+		{
+			_db.Thoughts.Remove(thought);
+		}
+
 		public void EditThought(Thought thought)
 		{
 			_db.Thoughts.Update(thought);
 		}
-
 
 		public IEnumerable<Thought> GetAllThoughtsByUser(string userName)
 		{
@@ -33,7 +37,7 @@ namespace Pensive.Models
 
 		public Thought GetThoughtById(string userName, int id)
 		{
-			return GetAllThoughtsByUser(userName).FirstOrDefault(t => t.Id == id);
+			return _db.Thoughts.FirstOrDefault(t => t.UserName == userName && t.Id == id);
 		}
 
 		public async Task<bool> SaveAllAsync()

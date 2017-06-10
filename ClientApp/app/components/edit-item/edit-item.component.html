@@ -3,6 +3,10 @@
 		<div class="panel-body">
 			<form [formGroup]="editForm" (ngSubmit)="update(editForm.value)">
 				<div class="form-group">
+					<div class="btn btn-danger btn-circle pull-right" (click)="remove()"><i class="fa fa-2x fa-trash"></i></div>
+				</div>
+				<br />
+				<div class="form-group">
 					<label class="control-label" for="content">Content:</label>
 					<textarea rows="5" formControlName="content" id="content" class="form-control"></textarea>
 					<span class="pull-right">{{200 - content.value.length}}</span>
@@ -23,7 +27,7 @@
 				<br />
 				<div class="form-group">
 					<input [disabled]="!editForm.dirty" class="btn btn-success" type="submit" value="Update" />
-					<a class="pull-right" [routerLink]="['/home']">Cancel</a>
+					<a class="pull-right" [routerLink]="['/']">Cancel</a>
 				</div>
 			</form>
 		</div>

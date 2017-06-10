@@ -34,7 +34,11 @@ export class EditItemComponent implements OnInit {
 		if (this.editForm.valid) {
 			this.thought.content = changes.content;
 			this.thought.color = changes.color;
-			this.ds.updateThought(this.thought).subscribe(t => this.r.navigate(['/index']));
+			this.ds.updateThought(this.thought).subscribe(t => this.r.navigate(['/']));
 		}
+	}
+
+	remove() {
+		this.ds.deleteThought(this.thought.id).subscribe(t => this.r.navigate(['/']));
 	}
 }

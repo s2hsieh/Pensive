@@ -9,6 +9,7 @@ namespace Pensive.Models
 		Thought GetThoughtById(string userName, int id);
 		void CreateThought(Thought thought);
 		void EditThought(Thought thought);
+		void DeleteThought(Thought thought);
 		Task<bool> SaveAllAsync();
 	}
 }

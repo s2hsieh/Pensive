@@ -33,6 +33,12 @@ export class DataService {
 			.catch(this.handleError);
 	}
 
+	deleteThought(id: number): Observable<IThought> {
+		return this.http.delete(`${this.apiUrl}/${id}`)
+			.map(r => <IThought>r.json())
+			.catch(this.handleError);
+	}
+
 	getAllColors(): string[] {
 		return [
 			"Aqua",
