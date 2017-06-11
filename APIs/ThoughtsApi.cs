@@ -39,7 +39,15 @@ namespace Pensive.APIs
 		{
 			try
 			{
-				return Ok(_repo.GetThoughtById(this.User.Identity.Name, id));
+				var result = _repo.GetThoughtById(this.User.Identity.Name, id);
+				if (result != null)
+				{
+					return Ok(result);
+				}
+				else
+				{
+					return NotFound();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -137,7 +145,7 @@ namespace Pensive.APIs
 			}
 			else
 			{
-				return Unauthorized();
+				return NotFound();
 			}
 		}
 	}
