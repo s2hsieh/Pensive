@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<br />
-		<div class="form-group">
+		<div *ngIf="thoughts?.length > 0" class="form-group">
 			<label class="control-label">Categories:</label>
 			<div class="btn-group">
 				<div class="btn btn-lg" title="Clear" [class.active]="filters.color == ''" (click)="updateFilter('color', '')"><i class="fa fa-close"></i></div>
