@@ -2,10 +2,10 @@
 	<h2 style="color:purple" class="text-center" *ngIf="isLoading"><span class=" fa fa-spinner fa-spin"></span> Loading...</h2>
 
 	<div *ngIf="!isLoading" class="row">
-		<div class="col-md-3">
+		<div *ngIf="thoughts?.length > 0" class="col-md-3">
 			<filter-menu (changeFilter)="applyFilter($event)" [thoughts]="thoughts"></filter-menu>
 		</div>
-		<div class="col-md-9">
+		<div [ngClass]="thoughts?.length > 0 ? 'col-md-9' : 'col-md-12'">
 			<index [thoughts]="filteredThoughts"></index>
 		</div>
 	</div>
